@@ -8,6 +8,7 @@ public class EventCleanApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(EventCleanApplication.class, args);
+		System.out.println("EventCleanApplication started");
 	}
 
 }

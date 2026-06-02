@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Windows ADS sidecar files ###
+*:Zone.Identifier
+*.Zone.Identifier
