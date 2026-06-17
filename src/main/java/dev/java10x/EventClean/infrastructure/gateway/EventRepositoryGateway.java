@@ -1,4 +1,7 @@
 package dev.java10x.EventClean.infrastructure.gateway;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Component;
 
 import dev.java10x.EventClean.core.entities.Event;
@@ -24,5 +27,15 @@ public class EventRepositoryGateway implements EventGateway{
         EventEntity newEvent = eventRepository.save(entity);
         return eventEntityMapper.toDto(newEvent);
     }
+
+    @Override
+    public List<Event> searchEvents() {
+        return eventRepository.findAll()
+                .stream()
+                .map(eventEntityMapper::toDto)
+                .toList();
+    }
+
+
 
 }
