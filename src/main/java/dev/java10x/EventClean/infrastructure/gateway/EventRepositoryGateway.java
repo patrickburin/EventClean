@@ -1,5 +1,6 @@
 package dev.java10x.EventClean.infrastructure.gateway;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
@@ -36,6 +37,16 @@ public class EventRepositoryGateway implements EventGateway{
                 .toList();
     }
 
+    @Override
+    public boolean existIdentifyer(String identifyer) {
+        return eventRepository.findAll()
+                .stream()
+                .anyMatch(event -> event.getIdentify().equalsIgnoreCase(identifyer));
+    }
 
+    @Override
+    public Optional<Event> findEventByIdentifyer(String identifyer) {
+        return eventRepository.findByIdentify(identifyer);
+    }
 
 }

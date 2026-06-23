@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import dev.java10x.EventClean.core.entities.Event;
 import dev.java10x.EventClean.core.usecase.CreateEventUseCase;
+import dev.java10x.EventClean.core.usecase.FilterIdentifyerEventUseCase;
 import dev.java10x.EventClean.core.usecase.SearchEventsUseCase;
 import dev.java10x.EventClean.infrastructure.dtos.EventDto;
 import dev.java10x.EventClean.infrastructure.mapper.EventDtoMapper;
@@ -26,11 +28,13 @@ public class EventController {
     private final CreateEventUseCase createEventUseCase;
     private final EventDtoMapper eventDtoMapper;
     private final SearchEventsUseCase searchEventUseCase;
+    private final FilterIdentifyerEventUseCase filterIdentifyerEventUseCase;
 
-    public EventController(CreateEventUseCase createEventUseCase, EventDtoMapper eventDtoMapper, SearchEventsUseCase searchEventUseCase) {
+    public EventController(CreateEventUseCase createEventUseCase, EventDtoMapper eventDtoMapper, SearchEventsUseCase searchEventUseCase, FilterIdentifyerEventUseCase filterIdentifyerEventUseCase) {
         this.createEventUseCase = createEventUseCase;
         this.eventDtoMapper = eventDtoMapper;
         this.searchEventUseCase = searchEventUseCase;
+        this.filterIdentifyerEventUseCase = filterIdentifyerEventUseCase;
     }
 
     @PostMapping("create-event")
@@ -48,6 +52,12 @@ public class EventController {
                 .stream()
                 .map(eventDtoMapper::toDto)
                 .collect(Collectors.toList());
+    }
+
+    @GetMapping("/identifyer/{identifyer}")
+    public ResponseEntity<Event> findByIdentifyer(@PathVariable String identifyer) {
+        Event event = filterIdentifyerEventUseCase.execute(identifyer);
+        return ResponseEntity.ok(event);
     }
 
 }
