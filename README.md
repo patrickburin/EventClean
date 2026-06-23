@@ -2,7 +2,7 @@
 
 EventClean is a small study project built with Java, Spring Boot, PostgreSQL, and Flyway to practice Clean Architecture concepts in a simple REST API.
 
-This repository is **not a production-ready application** and it was **not created as a real-world product**. Its main goal is to help study and apply ideas such as separation of concerns, use cases, gateways, DTO mapping, and infrastructure isolation.
+This repository is a simple project created to study and apply Clean Architecture concepts such as separation of concerns, use cases, gateways, DTO mapping, and infrastructure isolation.
 
 ## Purpose
 
@@ -125,19 +125,8 @@ Important:
 
 Flyway is enabled in the application configuration, so the `Events` table is created automatically when the application starts and connects successfully to PostgreSQL.
 
-## Project Limitations
-
-This is intentionally a learning project, so some things are simplified and should not be treated as production standards, for example:
-
-- minimal test coverage
-- simple error handling
-- no authentication or authorization
-- no advanced validation
-- no production deployment setup
-- naming inconsistencies kept as-is to preserve the study code
-
 ## Educational Disclaimer
 
-This repository exists to study and practice Clean Architecture concepts.
+This repository exists to study and practice Clean Architecture concepts in a straightforward and practical way.
 
-It is **not a real product**, **not production-ready**, and **not intended to represent a complete enterprise solution**. If you want to use it as a reference, treat it as a learning example only.
+It is a simple educational project meant for learning and experimentation rather than a commercial or full-scale product.
